@@ -1,0 +1,23 @@
+
+
+
+<nav class="navbar navbar-expand-lg navbar-light " style="background-color: #F5F5F5;">
+  <div class="container-fluid" style="background-color: #E8E8E8; position: fixed; width: 100%; height: 80px; z-index: 100;">
+    <a class="navbar-brand mt-4" style="height: 40px; padding-top: 8px;">Мероприятия Кванториума</a>
+    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+      <ul class="navbar-nav me-auto mb-2 mb-lg-0" style="padding-top: 30px;">
+        <li class="nav-item">
+          <a class="nav-link" href="{% url 'home' %}">Главная</a>
+        </li>
+      </ul>
+	  <form class="d-flex editContent mt-4" method="get" action="{% url 'home' %}" style="height: 40px; padding-top: 6px;">
+    	<input class="form-control" name='q' type="search" placeholder="Искать..." aria-label="Search" 
+      style="background-color: #F7F7F7;">
+    	<button class="btn btn-outline-primary" type="submit" style="width: 70px;">Поиск</button>
+	  </form>
+    </div>
+  </div>
+</nav>

@@ -1,0 +1,71 @@
+#header, .module h2, .module caption, .inline-group h2{
+	background: #666666;
+}
+
+#branding h1, #branding h1 a:link, #branding h1 a:visited, #user-tools strong, #user-tools a:link, #user-tools{
+	color: #fff;
+}
+
+div.breadcrumbs{
+	background: #757575;
+}
+
+body{
+	background: #808080;
+}
+
+#changelist .changelist-form-container{
+	background-color: #808080;
+}
+
+#content-main{
+	background: #808080;
+}
+
+.toggle-nav-sidebar{
+	background: #808080;
+}
+
+#changelist .actions{
+	width: 1201px !important;
+}
+
+#changelist .paginator{
+	width: 1201px !important;
+}
+
+#content-related .module{
+	background: #949494;
+}
+
+#content-related{
+	background: #949494 !important;
+}
+
+td, th, tr, tbody, a, span{
+	background-color: #949494;
+}
+
+a:link, a:visited{
+	color: #282828;
+}
+
+#nav-sidebar{
+	background-color: #808080;
+}
+
+#toolbar{
+	background: #949494 !important;
+}
+
+#toolbar form input{
+	background: #9c9c9c !important;
+}
+
+#changelist .actions{
+	background: #949494 !important;
+}
+
+#changelist .actions span.all, table thead th.sorted .sortoptions, #changelist .actions label, #changelist .actions span.action-counter, #changelist .actions span.clear, #changelist .actions span.question{
+	color: #282828;
+}

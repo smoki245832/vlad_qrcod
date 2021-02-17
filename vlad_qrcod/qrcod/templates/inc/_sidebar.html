@@ -1,0 +1,8 @@
+{% load news_tags %}
+
+<div class="list-group mt-5">
+	{% get_list_categories as categories %}
+	{% for item in categories %}
+	<a href="{% url 'category' item.pk %}" class="list-group-item list-group-item-action" aria-current="true" style="background-color: #F5F5F5;">{{ item.title }}</a>
+	{% endfor %}
+</div>
