@@ -1,0 +1,8 @@
+{
+  "name": "mainapp-ui",
+  "version": "0.1.0",
+  "private": true,
+  "dependencies": {
+    "axios": "^0.21.1"
+  }
+}

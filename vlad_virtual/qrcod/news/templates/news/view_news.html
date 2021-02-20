@@ -1,0 +1,40 @@
+{% extends 'base.html' %}
+{% load static %}
+
+
+{% block title %}
+	{{ item.title }}
+{% endblock %}
+
+
+{% block sidebar %}
+{% include 'inc/_sidebar.html' %}
+{% endblock %}
+
+
+{% block content %}
+<div class="card md-3 mt-5" style="background-color: #F5F5F5">
+  	<div class="card-header">
+   		Категория: <a href="{{ news_item.category.get_absolute_url }}">{{ item.category }}</a>	
+  	</div>
+	<div class="card-body" style="background-color: #f7f7f7;">
+ 		<div class="media" style="background-color: #f7f7f7;">
+	 		{% if news_item.photo %}
+ 				<img src="{{ news_item.photo.url }}" alt="" width="500" height="300" class="mr-3">
+ 			{% else %}
+	 			<img src="{% static 'templatemo_logo.png' %}" alt="" class="mr-3">
+	 		{% endif %}
+			<div class="media-body mt-3">
+   				<h1 class="card-title">{{ item.title }}</h1>
+   				<p class="card-text">{{ item.content|safe|linebreaks }}</p>
+	 		</div>
+		</div>
+	</div>
+	<div class="card-footer text-muted">
+		<p>Начало: {{ item.created_at|date:"Y-m-d H:i" }}</p>
+  		<div class="mt-3">
+			<p>Окончание: {{ item.updated_at|date:"Y-m-d H:i" }}</p>
+   		</div>
+	</div>
+</div>
+{% endblock %}

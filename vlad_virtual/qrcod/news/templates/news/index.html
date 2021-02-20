@@ -1,0 +1,75 @@
+{% extends 'base_site.html' %}
+{% load static %}
+
+
+{% block title %}
+{{ title }}
+{% endblock %}
+
+
+{% block sidebar %}
+{% include 'inc/_sidebar.html' %}
+{% endblock %}
+
+
+{% block content %}
+{% for item in news %}
+<div class="card md-3 mt-3" style="margin-left: auto;">
+  <div class="card-header" style="background-color: #F5F5F5">
+   	Категория: <a href="{{ item.category.get_absolute_url }}">{{ item.category }}</a>	
+  </div>
+	<div class="card-body">
+ 		<div class="media">
+ 			{% if item.photo %}
+ 				<img src="{{ item.photo.url }}" alt="" class="mr-3" style="width: 40%;">
+ 			{% else %}
+	 			<img src="{% static 'templatemo_logo.png' %}" alt="" class="mr-3" style="width: 40%;">
+	 		{% endif %}
+			<div class="media-body mt-3" style="width: 60%;">
+   				<h4 class="card-title">{{ item.title }}</h4>
+   				<p class="card-text">{{ item.content|safe|linebreaks|truncatewords:50 }}</p>
+	   			<div class="mt-3">
+					<a href="{% url 'add_news' news_id1=item.title %}" class="btn btn-outline-primary btn-block">Стать участником</a>
+				</div>
+	 		</div>
+		</div>
+	</div>
+</div>
+{% endfor %}
+
+{% if is_paginated %}
+<nav aria-label="...">
+  <ul class="pagination mt-3">
+
+  	<li class="page-item {% if not prev_url %}disabled{% endif %}">
+      <a class="page-link" href="{{ prev_url }}" tabindex="-1">Предыдущая</a>
+    </li>
+
+  	{% for p in news.paginator.page_range %}
+
+  	{% if news.number == p %}
+
+  	<li class="page-item active" aria-current="page">
+      <a class="page-link" href="?page={{ p }}">{{ p }}</a>
+    </li>
+
+  	{% elif p > news.number|add:-3 and p < news.number|add:3 %}
+
+    <li class="page-item">
+    	<a class="page-link" href="?page={{ p }}">{{ p }}</a>
+    </li>
+
+  	{% endif %}
+
+    {% endfor %}
+
+
+    <li class="page-item {% if not next_url %}disabled{% endif %}">
+      <a class="page-link" href="{{ next_url }}" tabindex="-1">Следующая</a>
+    </li>
+
+  </ul>
+</nav>
+{% endif %}
+
+{% endblock %}

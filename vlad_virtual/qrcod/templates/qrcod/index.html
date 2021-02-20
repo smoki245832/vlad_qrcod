@@ -1,0 +1,80 @@
+{% extends 'base_site.html' %}
+{% load static %}
+
+
+{% block slide %}
+  <header>
+    <div id="carouselExampleIndicators" class="carousel slide" data-ride="carousel">
+      <ol class="carousel-indicators">
+        <li data-target="#carouselExampleIndicators" data-slide-to="0" class="active"></li>
+        <li data-target="#carouselExampleIndicators" data-slide-to="1"></li>
+        <li data-target="#carouselExampleIndicators" data-slide-to="2"></li>
+      </ol>
+      <div class="carousel-inner" role="listbox">
+        <!-- Slide One - Set the background image for this slide in the line below -->
+        <div class="carousel-item active" style="background-image: url({% static '2.jpg' %})">
+          <div class="carousel-caption d-none d-md-block">
+            <h1>Мероприятия Кванториума</h1>
+            <p>Какой то там текст</p>
+          </div>
+        </div>
+        <!-- Slide Two - Set the background image for this slide in the line below -->
+        <div class="carousel-item" style="background-image: url({% static '3.jpg' %})">
+          <div class="carousel-caption d-none d-md-block">
+            <h1>Мероприятия Кванториума</h1>
+            <p>Какой то там текст</p>
+          </div>
+        </div>
+        <!-- Slide Three - Set the background image for this slide in the line below -->
+        <div class="carousel-item" style="background-image: url({% static 'i.webp' %})">
+          <div class="carousel-caption d-none d-md-block">
+            <h1>Мероприятия Кванториума</h1>
+            <p>Какой то там текст</p>
+          </div>
+        </div>
+      </div>
+      <a class="carousel-control-prev" href="#carouselExampleIndicators" role="button" data-slide="prev">
+        <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+        <span class="sr-only">Предыдущий</span>
+      </a>
+      <a class="carousel-control-next" href="#carouselExampleIndicators" role="button" data-slide="next">
+        <span class="carousel-control-next-icon" aria-hidden="true"></span>
+        <span class="sr-only">Следующий</span>
+      </a>
+    </div>
+  </header>
+{% endblock %}
+
+
+{% block content1 %}
+
+{% for item in news %}
+<!-- Marketing Icons Section -->
+<div class="card md-3 mt-5 col-md-12" id="news">
+  	<div class="card-header" style="background-color: #F5F5F5">
+   		Категория: <a href="{{ item.category.get_absolute_url }}">{{ item.category }}</a>	
+  	</div>
+	<div class="card-body">
+ 		<div class="media">
+ 			{% if item.photo %}
+ 				<img src="{{ item.photo.url }}" alt="" class="mr-3" style="width: 40%;">
+ 			{% else %}
+	 			<img src="{% static 'templatemo_logo.png' %}" alt="" class="mr-3" style="width: 40%;">
+	 		{% endif %}
+			<div class="media-body mt-3" style="width: 60%;">
+   				<h4 class="card-title">{{ item.title }}</h4>
+   				<p class="card-text">{{ item.content|safe|linebreaks|truncatewords:50 }}</p>
+	   			<div class="mt-3">
+					<a href="{% url 'add_news' news_id1=item.title %}" class="btn btn-outline-primary btn-block">Стать участником</a>
+				</div>
+	 		</div>
+		</div>
+	</div>
+</div>
+{% endfor %}
+
+<a href="{% url 'home' %}" class="btn btn-primary btn-block mt-3">
+	Посмотреть все мероприятия
+</a>
+
+{% endblock %}
