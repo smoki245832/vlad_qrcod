@@ -22,4 +22,17 @@
         <button class="btn btn-outline-primary" type="submit" style="height: 30px;">Поиск</button>
       </form>
     </div>
+    <span class="navbar-text">
+
+      {% if request.user.is_authenticated %}
+
+      Добро пожаловать, {{ user.username }} | <a href="{% url 'logout' %}">Выход</a>
+
+      {% else %}
+
+      <a href="{% url 'login' %}">Войти</a> | <a href="{% url 'register' %}">Регистрация</a>
+
+      {% endif %}
+
+    </span>
   </nav>

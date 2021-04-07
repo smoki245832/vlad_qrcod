@@ -10,9 +10,68 @@ from django.shortcuts import render, get_object_or_404, redirect
 from django.views.generic.list import ListView
 from django.db.models import Q
 from django.core.paginator import Paginator
+from django.contrib import messages
+from django.contrib.auth import login, logout
 
-from .models import News, Category, User
-from .forms import NewsForm
+from .models import News, Category, User1
+from .forms import NewsForm, UserRegisterForm, UserLoginForm
+
+
+def user_logout(request):
+
+	# деаутентификация пользователя
+
+	logout(request)
+
+	return redirect('login')
+
+
+def user_login(request):
+
+	# вход на сайт
+
+	if request.method == 'POST':
+
+		form = UserLoginForm(data=request.POST)
+
+		if form.is_valid():
+
+			user = form.get_user()
+			login(request, user)
+
+			return redirect('home')
+	else:
+
+		form = UserLoginForm()
+
+	return render(request, 'news/login.html', {'form': form})
+
+
+def register(request):
+
+	# регистрация на сайте
+
+	form = UserRegisterForm()
+
+	if request.method == 'POST':
+
+		form = UserRegisterForm(request.POST)
+
+		if form.is_valid():
+
+			user = form.save()
+			login(request, user)
+			messages.success(request, 'Вы успешно зарегистрировались')
+
+			return redirect('home')
+		else:
+
+			messages.error(request, 'Ошибка регистрации')
+	else:
+
+		form = UserRegisterForm()
+
+	return render(request, 'news/register.html', {"form": form})
 
 
 def index(request):

@@ -27,7 +27,7 @@ class News(models.Model):
 		return reverse('view_news', kwargs={'news_id': self.pk})
 
 
-class User(models.Model):
+class User1(models.Model):
 
 	name = models.CharField(max_length=255, verbose_name='Имя', db_index=True)
 	last_name = models.CharField(max_length=255, verbose_name='Фамилия', db_index=True)

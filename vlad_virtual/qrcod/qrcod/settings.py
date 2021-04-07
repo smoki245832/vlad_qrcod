@@ -132,3 +132,7 @@ STATICFILES_DIRS = [
 
 MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
 MEDIA_URL = '/media/'
+
+
+EMAIL_HOST = ['smtp.ukr.net']
+EMAIL_PORT = 645 # 2525

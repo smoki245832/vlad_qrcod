@@ -1,6 +1,6 @@
 from django.contrib import admin
 
-from .models import News, Category, User
+from .models import News, Category, User1
 
 class NewsAdmin(admin.ModelAdmin):
 	list_display = ('id', 'title', 'category', 'created_at', 'updated_at')
@@ -23,7 +23,7 @@ class UserAdmin(admin.ModelAdmin):
 
 admin.site.register(News, NewsAdmin)
 admin.site.register(Category, CategoryAdmin)
-admin.site.register(User, UserAdmin)
+admin.site.register(User1, UserAdmin)
 
 admin.site.site_title = 'Админка'
 admin.site.site_header = 'Админка'
