@@ -14,7 +14,7 @@ from django.contrib import messages
 from django.contrib.auth import login, logout
 
 from .models import News, Category, User1
-from .forms import NewsForm, UserRegisterForm, UserLoginForm
+from .forms import NewsForm, UserRegisterForm, UserLoginForm, AddNewsForm
 
 
 def user_logout(request):
@@ -182,6 +182,22 @@ def add_news(request, news_id1):
 	form.news = news_item.title
 
 	return render(request, 'news/add_news.html', {'form': form, 'news_item': news_item})
+
+
+def add_news_form(request):
+
+	# страница создания нового мероприятия
+
+	if request.method == 'POST':
+		form = AddNewsForm(request.POST)
+		if form.is_valid():
+			user = form.save(commit=False)
+			user.save()
+			return redirect('home_page')
+	else:
+		form = AddNewsForm()
+
+	return render(request, 'news/add_news_form.html', {'form': form})
 
 
 def qr(request, news_id2):

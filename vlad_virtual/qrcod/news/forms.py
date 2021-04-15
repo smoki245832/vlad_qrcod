@@ -3,7 +3,7 @@ from django.core.exceptions import ValidationError
 from django.contrib.auth.forms import UserCreationForm, AuthenticationForm
 from django.contrib.auth.models import User
 
-from .models import User1
+from .models import User1, News
 
 import re
 
@@ -72,4 +72,18 @@ class NewsForm(forms.ModelForm):
 		return father_name
 
 
+class AddNewsForm(forms.ModelForm):
 
+	# форма участника формы
+
+	class Meta:
+
+		model = News
+		#fields = '__all__'
+		fields = ['title', 'content', 'created_at', 'updated_at']
+		widgets = {
+			'title': forms.TextInput(attrs={'class': 'form-control', 'style': 'background-color: #F5F5F5;'}),
+			'content': forms.TextInput(attrs={'class': 'form-control', 'style': 'background-color: #F5F5F5;'}),
+			'created_at': forms.TextInput(attrs={'class': 'form-control', 'style': 'background-color: #F5F5F5;'}),
+			'updated_at': forms.TextInput(attrs={'class': 'form-control', 'style': 'background-color: #F5F5F5;'}),
+		}

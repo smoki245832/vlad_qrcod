@@ -4,6 +4,15 @@
       <li class="nav-item active navbar-nav ml-auto">
         <a class="nav-link" href="{% url 'home_page' %}">Главная</a>
       </li>
+
+      {% if request.user.is_authenticated %}
+
+      <li class="nav-item active navbar-nav ml-auto">
+        <a class="nav-link" href="{% url 'add_news_form' %}">Добавить мероприятие</a>
+      </li>
+
+      {% endif %}
+
       <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation">
         <span class="navbar-toggler-icon"></span>
       </button>

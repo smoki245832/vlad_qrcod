@@ -12,5 +12,6 @@ urlpatterns = [
 	path('category/<int:category_id>/', get_category, name='category'),
 	path('<news_id>/', view_news, name='view_news'),
 	path('add_news/<news_id1>', add_news, name='add_news'),
+	path('add_news_form/', add_news_form, name='add_news_form'),
 	path('add_news/qr/<news_id2>', qr, name='qr'),
 ]

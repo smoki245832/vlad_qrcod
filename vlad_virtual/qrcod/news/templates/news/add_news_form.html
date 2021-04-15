@@ -1,0 +1,50 @@
+{% extends 'base.html' %}
+
+
+{% block title %}
+	Стать участником мероприятия
+{% endblock %}
+
+
+{% block content %}
+
+<div class="mt-5">
+
+    <h1>Стать участником мероприятия:</h1>
+    <h1>{{ news_item.title }}</h1>
+
+    <form class="mt-4" action="{% url 'add_news_form' %}" method="post">
+
+        {% csrf_token %}
+        {% comment %}
+        {{ form.as_p }}
+        {% endcomment %}
+
+        {{ form.non_field_errors }}
+    <div class="fieldWrapper mt-3">
+        {{ form.title.errors }}
+        <label for="{{ form.title.id_for_label }}"><p style="height: 10px;">Название мероприятия:</p></label>
+        {{ form.title }}
+    </div>
+    <div class="fieldWrapper mt-3">
+        {{ form.content.errors }}
+        <label for="{{ form.content.id_for_label }}"><p style="height: 10px;">Описание мроприятия:</p></label>
+        {{ form.content }}
+    </div>
+    <div class="fieldWrapper mt-3">
+        {{ form.created_at.errors }}
+        <label for="{{ form.created_at.id_for_label }}"><p style="height: 10px;">Начало мероприятия:</p></label>
+        {{ form.created_at }}
+    </div>
+    <div class="fieldWrapper mt-3">
+        {{ form.updated_at.errors }}
+        <label for="{{ form.updated_at.id_for_label }}">Окончание мероприятия:</label>
+        {{ form.updated_at }}
+    </div>
+        <a href="{% url 'home_page' %}">
+            <button type="submit" class="btn btn-outline-primary btn-block mt-4">Стать участником</button>
+        </a>
+    </form>
+</div>
+
+{% endblock %}
