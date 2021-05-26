@@ -3,7 +3,7 @@ from django.core.exceptions import ValidationError
 from django.contrib.auth.forms import UserCreationForm, AuthenticationForm
 from django.contrib.auth.models import User
 
-from .models import User1, News
+from .models import User1, News, QRcode
 
 import re
 
@@ -70,6 +70,14 @@ class NewsForm(forms.ModelForm):
 			raise ValidationError('Отчество не должно начинаться с цифры')
 
 		return father_name
+
+
+
+class QRform(forms.Form):
+
+	# входные данные для создания QR-кода
+
+	content = forms.CharField(widget=forms.TextInput(attrs={'class': 'form-control'}))
 
 
 class AddNewsForm(forms.ModelForm):

@@ -1,0 +1,34 @@
+{% extends 'base.html' %}
+{% load static %}
+
+
+{% block title %}
+	Стать участником мероприятия
+{% endblock %}
+
+
+{% block content %}
+<div class="mt-5">
+
+    <form class="mt-4" action="{% url 'add_qr' %}" method="post">
+
+    	{% csrf_token %}
+
+    	{{ form.as_p }}
+
+    	<a href="{% url 'add_qr' %}">
+
+        	<button type="submit" class="btn btn-outline-primary btn-block mt-4">Стать участником</button>
+
+    	</a>
+
+    	<div class="mt-5">
+
+    		<img src="{% static 'news/qrcode.jpg' %}" alt="QR" width="500">
+
+    	</div>
+
+    </form>
+
+</div>
+{% endblock %}

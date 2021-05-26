@@ -14,12 +14,49 @@ from django.contrib import messages
 from django.contrib.auth import login, logout
 
 from .models import News, Category, User1
-from .forms import NewsForm, UserRegisterForm, UserLoginForm, AddNewsForm
+from .forms import NewsForm, UserRegisterForm, UserLoginForm, AddNewsForm, QRform
+
+
+def add_qr(request):
+
+	# создание QR-кода
+
+	if request.method == 'POST':
+
+		form = QRform(request.POST)
+
+		if form.is_valid():
+
+			a = request.POST
+
+			qr = qrcode.QRCode(
+				version=3,
+				error_correction=qrcode.constants.ERROR_CORRECT_L,
+				box_size=20,
+				border=2,
+			)
+			qr.add_data(a.get('content'))
+			qr.make(fit=True)
+
+			image = qr.make_image()
+
+			os.remove('news/static/news/qrcode.jpg')
+
+			image.save('news/static/news/qrcode.jpg')
+
+			redirect('add_qr')
+	else:
+		form = QRform()
+
+
+	return render(request, 'news/add_qr.html', {'form': form})
 
 
 def user_logout(request):
 
 	# деаутентификация пользователя
+
+	os.remove('news/static/news/qrcode.jpg')
 
 	logout(request)
 
@@ -29,6 +66,8 @@ def user_logout(request):
 def user_login(request):
 
 	# вход на сайт
+
+	os.remove('news/static/news/qrcode.jpg')
 
 	if request.method == 'POST':
 
@@ -50,6 +89,8 @@ def user_login(request):
 def register(request):
 
 	# регистрация на сайте
+
+	os.remove('news/static/news/qrcode.jpg')
 
 	form = UserRegisterForm()
 
@@ -77,6 +118,8 @@ def register(request):
 def index(request):
 
 	# стартовая страница с выводом всех мероприятий
+
+	os.remove('news/static/news/qrcode.jpg')
 
 	search_query = request.GET.get('q')
 
@@ -180,6 +223,7 @@ def add_news(request, news_id1):
 		form = NewsForm()
 
 	form.news = news_item.title
+	print(form)
 
 	return render(request, 'news/add_news.html', {'form': form, 'news_item': news_item})
 
@@ -202,7 +246,7 @@ def add_news_form(request):
 
 def qr(request, news_id2):
 
-	# генерация и вывод qr кода 
+	# генерация и вывод qr кода для прохода на мероприятие
 
 	news = News.objects.get(title=news_id2)
 

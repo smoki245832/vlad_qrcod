@@ -7,16 +7,8 @@
 {% endblock %}
 
 
-{% block sidebar %}
-{% include 'inc/_sidebar.html' %}
-{% endblock %}
-
-
 {% block content %}
 <div class="card md-3 mt-5">
-  	<div class="card-header" style="background-color: #F5F5F5">
-   		Категория: <a href="{{ item.category.get_absolute_url }}">{{ item.category }}</a>	
-  	</div>
 	<div class="qr_code" style="padding-left: 15px;">
     	<h2>Отсканируйте этот QR код чтобы увидеть информацию о мероприятии "{{ title }}"</h2>
     	<div>
